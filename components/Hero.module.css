@@ -110,6 +110,35 @@
   .subcopy{ max-width:34ch; }
   .ctaLabel{ white-space:normal; }
 
+  /* Mobile buttons layout - side by side like image */
+  .ctaRow{ 
+    margin-top: 1.5rem; 
+    display: flex; 
+    flex-direction: row; /* Keep buttons side by side on mobile */
+    gap: 0.75rem; 
+    flex-wrap: nowrap; /* Prevent wrapping */
+    justify-content: flex-start; /* Align to left like image */
+  }
+  
+  .cta {
+    flex: 1; /* Equal width buttons */
+    min-width: 0; /* Allow buttons to shrink */
+    padding: 0.8rem 1.2rem; /* Slightly smaller padding */
+    font-size: 0.95rem; /* Slightly smaller text */
+    justify-content: center; /* Center content in buttons */
+  }
+  
+  .iconWrap {
+    width: 32px;
+    height: 32px;
+    flex-shrink: 0; /* Prevent icon from shrinking */
+  }
+  
+  .icon {
+    width: 18px;
+    height: 18px;
+  }
+
   .right{
     left:52%;
     background-position: right 52%, center, center, center;
@@ -122,6 +151,58 @@
 @media (max-width: 360px){
   .right{ left:50%; background-position: right 54%, center, center, center; }
   .right::before{ width: var(--blend-small); }
+  
+  /* Extra narrow mobile - ensure buttons fit */
+  .ctaRow {
+    gap: 0.5rem; /* Smaller gap */
+    margin-top: 1.25rem;
+  }
+  
+  .cta {
+    padding: 0.7rem 1rem; /* Smaller padding */
+    font-size: 0.9rem; /* Smaller text */
+  }
+  
+  .iconWrap {
+    width: 28px;
+    height: 28px;
+  }
+  
+  .icon {
+    width: 16px;
+    height: 16px;
+  }
+  
+  .ctaLabel {
+    font-size: 0.85rem; /* Smaller label text */
+  }
+}
+
+/* Ultra narrow phones (≤ 320px) - iPhone SE, etc. */
+@media (max-width: 320px) {
+  .ctaRow {
+    gap: 0.4rem;
+    margin-top: 1rem;
+  }
+  
+  .cta {
+    padding: 0.6rem 0.8rem;
+    font-size: 0.85rem;
+  }
+  
+  .iconWrap {
+    width: 24px;
+    height: 24px;
+  }
+  
+  .icon {
+    width: 14px;
+    height: 14px;
+  }
+  
+  .ctaLabel {
+    font-size: 0.8rem;
+  }
 }
 
 /* Reduced motion safeguard */

@@ -171,25 +171,30 @@
 /* Optional helper text */
 .footerText{ font-size:12px; color:#6B7280; margin-top:10px; }
 
-/* ========== MOBILE ONLY (≤768px) — centered layout; ONLY company info bold ========== */
+/* ========== MOBILE ONLY (≤768px) — horizontal logo layout like image ========== */
 @media (max-width:768px){
   .logoSection {
     padding: 20px 16px 10px;
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
   }
   
   .logoContainer {
-    gap: 12px;
+    gap: 16px;
     margin-bottom: 10px;
+    flex-direction: row; /* Keep horizontal layout on mobile */
+    align-items: center;
+    justify-content: center;
   }
   
   .logo {
-    width: 100px;
-    height: 100px;
+    width: 80px;
+    height: 80px;
+    flex-shrink: 0;
   }
   
   .logoMain {
-    font-size: 32px;
-    letter-spacing: 3px;
+    font-size: 28px;
+    letter-spacing: 2px;
     text-shadow: 
       0 1px 0 rgba(255,255,255,0.9),
       0 2px 4px rgba(0,0,0,0.4),
@@ -197,9 +202,9 @@
   }
   
   .logoSub {
-    font-size: 16px;
+    font-size: 14px;
     font-weight: 800;
-    letter-spacing: 2px;
+    letter-spacing: 1.5px;
     text-shadow: 
       0 1px 0 rgba(255,255,255,0.9),
       0 2px 4px rgba(0,0,0,0.4),
@@ -260,4 +265,54 @@
     margin-top:4px;
   }
   .leftFooter a{ font-weight:400; } /* ensure legal links stay normal */
+}
+
+/* ========== VERY NARROW MOBILE (≤375px) — ensure footer logo fits ========== */
+@media (max-width: 375px) {
+  .logoSection {
+    padding: 16px 12px 8px;
+  }
+  
+  .logoContainer {
+    gap: 12px;
+  }
+  
+  .logo {
+    width: 60px;
+    height: 60px;
+  }
+  
+  .logoMain {
+    font-size: 22px;
+    letter-spacing: 1px;
+  }
+  
+  .logoSub {
+    font-size: 12px;
+    letter-spacing: 1px;
+  }
+  
+  .container {
+    padding: 8px 12px;
+    gap: 16px;
+  }
+  
+  .column {
+    padding: 8px 0 12px;
+  }
+  
+  .column h4 {
+    font-size: 16px;
+    margin: 12px 0 4px;
+  }
+  
+  .navItem {
+    font-size: 16px;
+    padding: 10px 12px;
+  }
+  
+  .footerBottom {
+    padding: 12px 12px 0;
+    font-size: 12px;
+  }
 }
