@@ -1,0 +1,281 @@
+/* ===== Brand palette ===== */
+:root{
+  --ws-black:#0a0a0a;
+  --ws-offwhite:#f5f6f7;
+  --ws-gold-1:#fff1b8;
+  --ws-gold-2:#e8c872;
+  --ws-gold-3:#d4af37;
+  --ws-gold-4:#b78a1a;
+  --ws-gold-glow:rgba(212,175,55,.28);
+}
+
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 70px;
+  padding: 0 0 0 0;
+  color: var(--ink);
+
+  /* Glass effect with white background */
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+}
+
+/* Remove the gold hairline for cleaner look */
+
+
+/* ===== Logo + brand ===== */
+.logoWrap { 
+  display: inline-flex; 
+  align-items: center; 
+  gap: 16px; 
+  text-decoration: none;
+  padding: 0 0 0 24px;
+}
+
+.logoImg {
+  width: 100px;
+  height: 100px;
+  object-fit: contain;
+  filter: drop-shadow(0 4px 8px rgba(0,0,0,0.2));
+}
+
+.brandText {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.brandName {
+  font-family: "Bebas Neue", sans-serif;
+  font-weight: 900;
+  letter-spacing: 4px; 
+  font-size: 32px;
+  text-transform: uppercase;
+  color: #1a1a1a;
+  text-shadow: 
+    0 1px 0 rgba(255,255,255,0.9),
+    0 2px 4px rgba(0,0,0,0.4),
+    0 4px 8px rgba(0,0,0,0.3);
+  line-height: 1;
+  position: relative;
+}
+
+.brandName::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 100%);
+  border-radius: 2px;
+  z-index: -1;
+}
+
+.brandSub {
+  font-family: "Bebas Neue", sans-serif;
+  font-weight: 800;
+  letter-spacing: 2px; 
+  font-size: 18px;
+  text-transform: uppercase;
+  color: var(--ws-gold-3);
+  text-shadow: 
+    0 1px 0 rgba(255,255,255,0.9),
+    0 2px 4px rgba(0,0,0,0.4),
+    0 4px 8px rgba(0,0,0,0.3);
+  line-height: 1;
+  position: relative;
+}
+
+.brandSub::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, rgba(212,175,55,0.1) 0%, rgba(212,175,55,0.05) 100%);
+  border-radius: 2px;
+  z-index: -1;
+}
+
+
+/* ===== Hamburger ===== */
+.menuIcon{
+  display: inline-flex; 
+  flex-direction: column; 
+  justify-content: center; 
+  align-items: center;
+  height: 44px; 
+  width: 44px; 
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.8);
+  border: 1px solid rgba(212, 175, 55, 0.2);
+  color: var(--ink);
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  margin-right: 24px;
+}
+
+.menuIcon:hover{ 
+  background: var(--ws-gold-3);
+  color: white;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(212, 175, 55, 0.3);
+}
+
+.bar{ 
+  width: 20px; 
+  height: 2px; 
+  background: currentColor; 
+  margin: 2px 0; 
+  border-radius: 1px;
+  transition: all 0.2s ease;
+}
+
+/* ===== Overlay ===== */
+.overlay{
+  position: fixed; inset: 0; background: rgba(0,0,0,.7);
+  opacity: 0; pointer-events: none; transition: opacity .25s ease; z-index: 60;
+}
+.show{ opacity: 1; pointer-events: auto; }
+
+/* ===== Drawer ===== */
+.drawer{
+  position: fixed; top: 0; right: 0; z-index: 61;
+  width: min(92vw, 420px); height: 100dvh; color: var(--ws-offwhite);
+  background:
+    radial-gradient(60% 35% at 60% 0%, rgba(212,175,55,.10), transparent 60%),
+    linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.01));
+  backdrop-filter: saturate(140%) blur(6px);
+  transform: translateX(100%); transition: transform .3s ease;
+  box-shadow: -16px 0 40px rgba(0,0,0,.35), inset 0 1px 0 rgba(255,255,255,.06);
+  display: flex; flex-direction: column;
+}
+.open{ transform: translateX(0); }
+
+/* Drawer header */
+.drawerHeader{
+  height: 64px; display: flex; align-items: center; justify-content: space-between;
+  padding: 0 24px; border-bottom: 1px solid rgba(255,255,255,.06);
+  background:
+    radial-gradient(80px 40px at 30% 0%, rgba(212,175,55,.15), transparent 60%),
+    linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.01));
+}
+.brandMini{ font-weight: 800; font-size: 12px; letter-spacing: .22em; color: var(--ws-gold-2); }
+.closeBtn{
+  height: 40px; width: 40px; border-radius: 9999px;
+  border: 1px solid rgba(255,255,255,.14);
+  background: transparent; color: var(--ws-offwhite); font-size: 22px; line-height: 22px;
+}
+.closeBtn:hover{ box-shadow: 0 0 0 4px var(--ws-gold-glow); }
+
+/* Drawer nav */
+.navMenu{
+  padding: 12px 16px;
+  flex: 1 1 auto;           /* <-- make nav take available space */
+  overflow-y: auto;         /* <-- allow scroll if needed */
+}
+.navItem{
+  display: block; padding: 16px 12px; margin: 6px 0;
+  border-radius: 10px; font-weight: 800; font-size: 22px; letter-spacing: .02em;
+  color: var(--ws-offwhite); text-decoration: none;
+  transition: background .2s ease, transform .12s ease, box-shadow .2s ease;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+}
+.navItem:hover{
+  background: rgba(212,175,55,.07);
+  box-shadow: 0 0 0 1px rgba(212,175,55,.12) inset;
+  transform: translateX(2px);
+}
+
+/* Drawer CTAs */
+.ctaWrap{
+  margin-top: auto;         /* <-- push CTAs to bottom (email visible on mobile) */
+  padding: 0 16px 20px;
+  display: grid; gap: 12px;
+}
+.cta{
+  display: flex; align-items: center; justify-content: center;
+  height: 52px; border-radius: 9999px; font-weight: 800; letter-spacing: .03em;
+  text-decoration: none; box-shadow: 0 10px 24px rgba(0,0,0,.35);
+}
+.ctaPrimary{
+  color: #1a1a1a;
+  background: linear-gradient(135deg, var(--ws-gold-1), var(--ws-gold-3) 50%, var(--ws-gold-4));
+  border: 1px solid rgba(255,255,255,.08);
+  text-shadow: 0 1px 0 rgba(255,255,255,.4);
+}
+.ctaPrimary:hover{ filter: brightness(1.05); box-shadow: 0 0 0 4px var(--ws-gold-glow), 0 10px 24px rgba(0,0,0,.45); }
+.ctaDark{
+  color: var(--ws-offwhite);
+  background: linear-gradient(180deg, #111315, #0b0c0e);
+  border: 1px solid rgba(255,255,255,.12);
+}
+.ctaDark:hover{ box-shadow: 0 0 0 4px rgba(255,255,255,.08), 0 10px 24px rgba(0,0,0,.55); }
+
+/* === Mobile adjustments: logo starts from very beginning === */
+@media (max-width: 767px){
+  .header {
+    padding: 0 16px 0 0; /* Remove left padding, keep right padding for hamburger */
+  }
+  
+  .logoWrap {
+    margin-left: 0; /* Ensure logo starts from the very left */
+    gap: 12px; /* Reduce gap between logo and text on mobile */
+    padding: 8px 12px 8px 0; /* Add padding for better touch targets and spacing */
+    background: rgba(255, 255, 255, 0.1); /* Subtle background for better contrast */
+    border-radius: 12px; /* Rounded corners for modern look */
+    backdrop-filter: blur(10px); /* Subtle blur effect */
+  }
+  
+  .logoImg {
+    width: 80px; /* Slightly smaller logo on mobile */
+    height: 80px;
+  }
+  
+  .brandName {
+    font-size: 26px; /* Slightly larger for better readability */
+    letter-spacing: 2.5px; /* Increased letter spacing for clarity */
+    font-weight: 900; /* Ensure maximum font weight */
+    text-shadow: 
+      0 1px 0 rgba(255,255,255,0.9),
+      0 2px 4px rgba(0,0,0,0.4),
+      0 4px 8px rgba(0,0,0,0.3); /* Stronger text shadow for readability */
+  }
+  
+  .brandSub {
+    font-size: 16px; /* Increased size for better readability */
+    letter-spacing: 2px; /* Increased letter spacing for clarity */
+    font-weight: 800; /* Increased font weight for better visibility */
+    color: var(--ws-gold-4); /* Darker gold for better contrast */
+    text-shadow: 
+      0 1px 0 rgba(255,255,255,0.9),
+      0 2px 4px rgba(0,0,0,0.4),
+      0 4px 8px rgba(0,0,0,0.3); /* Stronger text shadow for readability */
+  }
+}
+
+/* === Desktop adjustments: remove large space between Contact and phone CTA === */
+@media (min-width: 1024px){
+  /* Let the nav size to its content so CTAs follow immediately */
+  .navMenu{
+    flex: 0 0 auto;
+    overflow: visible;
+  }
+  /* Put CTAs directly under the nav */
+  .ctaWrap{
+    margin-top: 12px;   /* instead of auto */
+    padding-bottom: 20px;
+  }
+}

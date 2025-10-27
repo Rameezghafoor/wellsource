@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Formspree Test</title>
+</head>
+<body>
+    <h1>Formspree Test Form</h1>
+    <form action="https://formspree.io/f/xpwoqwwj" method="POST">
+        <div>
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required>
+        </div>
+        <div>
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+        </div>
+        <div>
+            <label for="message">Message:</label>
+            <textarea id="message" name="message" required></textarea>
+        </div>
+        <div>
+            <input type="hidden" name="_subject" value="Test Form Submission">
+        </div>
+        <div>
+            <button type="submit">Send Test Message</button>
+        </div>
+    </form>
+    
+    <script>
+        document.querySelector('form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            console.log('Form submitted');
+            
+            fetch('https://formspree.io/f/xpwoqwwj', {
+                method: 'POST',
+                body: new FormData(this)
+            })
+            .then(response => {
+                console.log('Response status:', response.status);
+                return response.text();
+            })
+            .then(data => {
+                console.log('Response data:', data);
+                if (response.ok) {
+                    alert('Success! Check your Formspree dashboard.');
+                } else {
+                    alert('Error: ' + data);
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('Error: ' + error);
+            });
+        });
+    </script>
+</body>
+</html>

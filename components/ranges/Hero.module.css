@@ -1,0 +1,154 @@
+/* Ranges Hero Styles - Gold Theme */
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@500;600;700&display=swap');
+
+:root{
+  --gold-300:#f1da8a;
+  --gold-400:#e3c66a;
+  --gold-500:#d4af37;
+  --gold-600:#b9922c;
+  --gold-800:#6a5317;
+  --ink:#162025;
+  --paper:#ffffff;
+}
+
+/* Base typography inside the hero only */
+.hero, .hero *{
+  font-family: "Montserrat", system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+.hero{ display:block; width:100%; }
+
+/* ===== TOP BANNER (desktop/tablet) ===== */
+.banner{
+  color:#fff;
+  background:
+    radial-gradient(70% 100% at 28% 35%, rgba(241,218,138,.22), rgba(0,0,0,0) 60%),
+    radial-gradient(55% 70% at 80% 45%, rgba(227,198,106,.14), rgba(0,0,0,0) 70%),
+    linear-gradient(90deg, var(--gold-800) 0%, var(--gold-600) 52%, var(--gold-300) 100%);
+  box-shadow: 0 10px 20px rgba(0,0,0,.18);
+}
+
+.container{
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 30px 20px 40px;
+  text-align: left;
+}
+
+.title{
+  font-family: "Bebas Neue", sans-serif;
+  text-transform: uppercase;
+  font-size: clamp(32px, 5.5vw, 64px);
+  font-weight: 700;
+  margin: 0 0 12px 0;
+  line-height: .9;
+}
+
+.lead{
+  font-size: clamp(15px, 1.7vw, 18px);
+  line-height: 1.5;
+  max-width: 60ch;
+  margin: 0;
+}
+
+/* ===== INFO STRIP (desktop/tablet) ===== */
+.infoStrip{ background: var(--paper); }
+
+.infoRow{
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 16px 20px 22px;
+  display:flex;
+  align-items:center;
+  justify-content: space-between;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.infoText{
+  color: var(--ink);
+  font-size: clamp(14px, 1.5vw, 18px);
+  line-height: 1.5;
+  margin: 0;
+  flex: 1 1 640px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.pills{ display:flex; gap: 14px; flex-wrap: wrap; }
+
+.pill{
+  display:inline-flex; align-items:center; gap: 8px;
+  padding: 12px 20px;
+  border-radius: 999px;
+  border: 2px solid var(--gold-500);
+  background: #fff; color: var(--ink);
+  text-decoration: none; font-weight: 600;
+  font-size: 15px; line-height: 1;
+  transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease, background .2s ease;
+}
+.pill:hover{
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0,0,0,.08);
+  border-color: var(--gold-600);
+  background: #fff8dc;
+}
+
+.icon{ width: 16px; height: 16px; fill: var(--gold-500); }
+
+/* ===== Mobile-only refinements (≤640px) ===== */
+@media (max-width: 640px){
+  .container{
+    padding: 22px 14px 26px;
+    text-align: center;
+  }
+  .title{
+    text-align: center;
+    font-size: clamp(26px, 9vw, 40px);
+    margin-bottom: 8px;
+  }
+  .lead{
+    text-align: center;
+    max-width: 32ch;
+    font-size: 16px;
+    line-height: 1.45;
+    margin: 8px auto 0;
+  }
+
+  .infoRow{
+    display: block;
+    padding: 12px 14px 18px;
+  }
+  .infoText{ display: none; }
+
+  .pills{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+  }
+
+  /* Email first, Phone second */
+  .pills a:nth-child(1){ order: 2; }
+  .pills a:nth-child(2){ order: 1; }
+
+  .pill{
+    width: 85%;           /* narrower, more professional look */
+    max-width: 520px;
+    justify-content: center;
+    border-radius: 999px;
+    padding: 14px 18px;
+    font-size: 16px;
+  }
+  .icon{ width: 18px; height: 18px; }
+}
+
+/* Keep sentence wrapping again on smaller desktops */
+@media (max-width: 1200px){
+  .infoText{ white-space: normal; }
+}
+
+

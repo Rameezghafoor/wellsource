@@ -1,0 +1,281 @@
+/* Surgical Instruments Section - Gold Theme */
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@500;600;700&display=swap');
+
+:root {
+  --gold-300: #f1da8a;
+  --gold-400: #e3c66a;
+  --gold-500: #d4af37;
+  --gold-600: #b9922c;
+  --gold-800: #6a5317;
+  --ink: #162025;
+  --paper: #ffffff;
+  --gray-100: #f5f5f5;
+  --gray-200: #e5e5e5;
+  --gray-600: #666666;
+  --gray-800: #333333;
+}
+
+.surgicalInstruments {
+  background: var(--paper);
+  padding: 30px 0 40px 0;
+  font-family: "Montserrat", system-ui, sans-serif;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  align-items: center;
+}
+
+.leftColumn {
+  height: 500px;
+  position: relative;
+}
+
+.imageContainer {
+  width: 100%;
+  height: 100%;
+  border-radius: 12px;
+  overflow: hidden;
+  background: transparent;
+}
+
+.instrumentsImage {
+  object-fit: cover;
+  object-position: center;
+}
+
+.rightColumn {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.header {
+  font-size: 16px;
+  font-weight: 800;
+  color: var(--gold-600);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin-bottom: 8px;
+  text-shadow: 
+    0 1px 0 rgba(255,255,255,0.9),
+    0 2px 4px rgba(0,0,0,0.4),
+    0 4px 8px rgba(0,0,0,0.3);
+}
+
+.title {
+  font-family: "Bebas Neue", sans-serif;
+  font-size: clamp(32px, 4vw, 48px);
+  font-weight: 700;
+  color: var(--ink);
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  line-height: 1.1;
+}
+
+.description {
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--ink);
+  margin: 0;
+}
+
+.specialties {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+  margin: 8px 0;
+}
+
+.specialty {
+  font-size: 14px;
+  color: var(--ink);
+  font-weight: 500;
+}
+
+.separator {
+  font-size: 14px;
+  color: var(--gray-600);
+  font-weight: 300;
+}
+
+.buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 8px;
+}
+
+.primaryButton {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  background: linear-gradient(135deg, var(--gold-600) 0%, var(--gold-500) 100%);
+  color: var(--paper);
+  border: none;
+  padding: 16px 24px;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  font-family: "Montserrat", system-ui, sans-serif;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 12px rgba(212, 175, 55, 0.3);
+  align-self: flex-start;
+}
+
+.primaryButton:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(212, 175, 55, 0.4);
+  background: linear-gradient(135deg, var(--gold-500) 0%, var(--gold-400) 100%);
+  color: var(--paper);
+}
+
+.primaryButton:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 8px rgba(212, 175, 55, 0.3);
+}
+
+.secondaryButton {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  background: var(--paper);
+  color: var(--ink);
+  border: 2px solid var(--gold-500);
+  padding: 14px 24px;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  font-family: "Montserrat", system-ui, sans-serif;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  align-self: flex-start;
+}
+
+.secondaryButton:hover {
+  background: var(--gold-500);
+  color: var(--paper);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(212, 175, 55, 0.2);
+}
+
+.secondaryButton:active {
+  transform: translateY(0);
+}
+
+.buttonIcon {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+}
+
+.primaryButton .buttonIcon {
+  color: var(--paper);
+}
+
+.secondaryButton .buttonIcon {
+  color: var(--gold-500);
+}
+
+.secondaryButton:hover .buttonIcon {
+  color: var(--paper);
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+  .surgicalInstruments {
+    padding: 20px 0 30px 0;
+  }
+
+  .container {
+    grid-template-columns: 1fr;
+    gap: 30px;
+    padding: 0 16px;
+  }
+
+  .leftColumn {
+    height: 300px;
+    order: -1;
+  }
+
+  .title {
+    font-size: 28px;
+    text-align: center;
+  }
+
+  .description {
+    text-align: center;
+  }
+
+  .specialties {
+    justify-content: center;
+  }
+
+  .buttons {
+    align-items: center;
+  }
+
+  .primaryButton,
+  .secondaryButton {
+    align-self: center;
+    width: 100%;
+    max-width: 300px;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .surgicalInstruments {
+    padding: 15px 0 25px 0;
+  }
+
+  .container {
+    gap: 20px;
+  }
+
+  .leftColumn {
+    height: 250px;
+  }
+
+  .title {
+    font-size: 24px;
+  }
+
+  .specialties {
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+  }
+
+  .separator {
+    display: none;
+  }
+
+  .primaryButton,
+  .secondaryButton {
+    padding: 12px 20px;
+    font-size: 14px;
+  }
+
+  .buttonIcon {
+    width: 18px;
+    height: 18px;
+  }
+}
+

@@ -1,0 +1,137 @@
+/* Reusable Contact Link Styles */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700&display=swap');
+
+:root {
+  --gold-300: #f1da8a;
+  --gold-400: #e3c66a;
+  --gold-500: #d4af37;
+  --gold-600: #b9922c;
+  --gold-800: #6a5317;
+  --ink: #162025;
+  --paper: #ffffff;
+  --gray-600: #666666;
+  --gray-800: #333333;
+}
+
+.contactLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  color: var(--gray-600);
+  text-decoration: none;
+  font-family: "Montserrat", system-ui, sans-serif;
+  transition: color 0.2s ease;
+}
+
+.contactLink:hover {
+  color: var(--gold-600);
+}
+
+.contactIcon {
+  width: 14px;
+  height: 14px;
+  color: var(--gray-800);
+  flex-shrink: 0;
+}
+
+/* Variant styles for different contexts */
+.contactLink.pill {
+  padding: 12px 20px;
+  border-radius: 999px;
+  border: 2px solid var(--gold-500);
+  background: #fff;
+  color: var(--ink);
+  font-weight: 600;
+  font-size: 15px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+}
+
+.contactLink.pill:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  border-color: var(--gold-600);
+  background: #fff8dc;
+  color: var(--ink);
+}
+
+.contactLink.pill .contactIcon {
+  color: var(--gold-500);
+}
+
+.contactLink.cta {
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 16px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  transition: all 0.2s ease;
+}
+
+.contactLink.ctaPrimary {
+  background: linear-gradient(135deg, var(--gold-600) 0%, var(--gold-500) 100%);
+  color: var(--paper);
+  box-shadow: 0 4px 12px rgba(212, 175, 55, 0.3);
+}
+
+.contactLink.ctaPrimary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(212, 175, 55, 0.4);
+  background: linear-gradient(135deg, var(--gold-500) 0%, var(--gold-400) 100%);
+  color: var(--paper);
+}
+
+.contactLink.ctaDark {
+  background: var(--ink);
+  color: var(--paper);
+  border: 2px solid var(--ink);
+}
+
+.contactLink.ctaDark:hover {
+  background: var(--paper);
+  color: var(--ink);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+.contactLink.ctaDark .contactIcon {
+  color: var(--paper);
+}
+
+.contactLink.ctaDark:hover .contactIcon {
+  color: var(--ink);
+}
+
+.contactLink.footer {
+  color: var(--gray-600);
+  font-size: 14px;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.contactLink.footer:hover {
+  color: var(--gold-500);
+}
+
+.contactLink.footer .contactIcon {
+  color: var(--gold-500);
+  margin-right: 8px;
+}
+
+/* Mobile responsive */
+@media (max-width: 640px) {
+  .contactLink.pill {
+    width: 85%;
+    max-width: 520px;
+    justify-content: center;
+    padding: 14px 18px;
+    font-size: 16px;
+  }
+  
+  .contactLink.cta {
+    padding: 14px 20px;
+    font-size: 14px;
+  }
+}
+

@@ -1,0 +1,131 @@
+:root{
+  --gold:#C9A227;
+  --gold-d:#B0891E;
+  --ink:#0F172A;
+  --blend-desktop: 360px;
+  --blend-mobile: 200px;
+  --blend-small: 160px;
+}
+
+.hero{ position:relative; overflow:hidden; min-height:420px; }
+.left{ position:relative; z-index:2; }
+
+/* typography */
+.headline{
+  color:var(--ink);
+  text-transform:uppercase;
+  font-weight:900;
+  line-height:1.04;
+  font-size:clamp(1.9rem, 4.4vw + .4rem, 3.6rem);
+  letter-spacing:-0.01em;
+}
+
+.subcopy{
+  margin-top:1.25rem;
+  color:#475569;
+  font-size:17px;
+  line-height:1.65;
+  max-width:40ch;
+  text-align: left;
+}
+
+/* CTAs */
+.ctaRow{ margin-top:2rem; display:flex; flex-wrap:wrap; gap:1.25rem; }
+.cta{
+  position:relative; overflow:hidden;
+  display:inline-flex; align-items:center; gap:.75rem;
+  padding:.95rem 1.8rem; border-radius:9999px;
+  font-weight:800; font-size:1.05rem; line-height:1;
+  text-decoration:none; transition:transform .12s ease, box-shadow .2s ease, filter .2s ease;
+  will-change: transform, box-shadow;
+}
+.cta:active{ transform:translateY(1px) scale(.99); }
+
+.primary{
+  color:#000;
+  background-image:linear-gradient(180deg,var(--gold),var(--gold-d));
+  box-shadow:0 16px 28px rgba(201,162,39,.25), inset 0 1px 0 rgba(255,255,255,.28);
+}
+.secondary{
+  color:var(--gold);
+  background:#fff; border:2px solid var(--gold);
+  box-shadow:0 10px 20px rgba(0,0,0,.08);
+}
+
+.iconWrap{ width:36px; height:36px; border-radius:9999px; display:inline-flex; align-items:center; justify-content:center; border:2px solid currentColor; background:transparent; }
+.icon{ width:20px; height:20px; stroke:currentColor; stroke-width:2.2; fill:none; }
+.ctaLabel{ white-space:nowrap; }
+
+/* Sheen sweep (desktop), focus ring & mobile press */
+.primary::after, .secondary::after{
+  content:""; position:absolute; inset:0 auto 0 -140%;
+  width:50%; pointer-events:none;
+  background:linear-gradient(120deg, transparent 0%, rgba(255,255,255,.45) 45%, transparent 90%);
+  transform:skewX(-24deg);
+  opacity:0;
+}
+@keyframes sheen{ from{ left:-140%; opacity:.0; } 50%{ opacity:.65; } to{ left:140%; opacity:0; } }
+.cta:focus-visible{ outline:none; box-shadow:0 0 0 3px rgba(201,162,39,.35), 0 10px 20px rgba(0,0,0,.08); }
+@media (hover:hover) and (pointer:fine){
+  .cta:hover{ transform:translateY(-2px); }
+  .primary:hover{ box-shadow:0 22px 34px rgba(201,162,39,.30), inset 0 1px 0 rgba(255,255,255,.35); }
+  .secondary:hover{ box-shadow:0 14px 26px rgba(0,0,0,.10); }
+  .primary:hover::after, .secondary:hover::after{ animation:sheen .9s ease; }
+}
+@media (hover:none){
+  .primary:active{ filter:brightness(.97); }
+  .secondary:active{ background:rgba(201,162,39,.06); }
+}
+
+/* RIGHT panel: image with soft surface + subtle shadows behind it */
+.right{
+  position:absolute;
+  top:0; right:0; bottom:0;
+  left:58.3333%; /* 7/12 grid boundary */
+  /* Background layers are painted top -> bottom. Put the image first so it sits above the surface/shadows. */
+  background-image:
+    url('/surgical.png'),
+    radial-gradient(120% 70% at 82% 68%, rgba(2,6,23,.12), rgba(2,6,23,0) 60%),
+    radial-gradient(90% 50% at 96% 12%, rgba(2,6,23,.10), rgba(2,6,23,0) 60%),
+    linear-gradient(180deg, #f6f8fb 0%, #ffffff 40%, #f7f7f7 100%);
+  background-repeat: no-repeat, no-repeat, no-repeat, no-repeat;
+  background-size: contain, 100% 100%, 100% 100%, 100% 100%;
+  background-position: right center, center, center, center;
+  z-index:1;
+  pointer-events:none;
+  box-shadow:none;
+}
+
+/* Left blend overlay above everything */
+.right::before{
+  content:"";
+  position:absolute; top:0; bottom:0; left:0;
+  width: var(--blend-desktop);
+  background: linear-gradient(90deg, rgba(255,255,255,1) 0%, rgba(255,255,255,.0) 100%);
+}
+
+/* -------- Mobile tuning (≤ 767px) -------- */
+@media (max-width: 767px){
+  .headline{ font-size:clamp(1.55rem, 5.6vw + .25rem, 2.55rem); }
+  .subcopy{ max-width:34ch; }
+  .ctaLabel{ white-space:normal; }
+
+  .right{
+    left:52%;
+    background-position: right 52%, center, center, center;
+    background-size: contain, 100% 100%, 100% 100%, 100% 100%;
+  }
+  .right::before{ width: var(--blend-mobile); }
+}
+
+/* Very small phones (≤ 360px) */
+@media (max-width: 360px){
+  .right{ left:50%; background-position: right 54%, center, center, center; }
+  .right::before{ width: var(--blend-small); }
+}
+
+/* Reduced motion safeguard */
+@media (prefers-reduced-motion: reduce){
+  .cta{ transition: box-shadow .2s ease; }
+  .primary:hover::after, .secondary:hover::after{ animation:none; opacity:0; }
+}

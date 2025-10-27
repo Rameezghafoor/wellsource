@@ -1,0 +1,111 @@
+.wrapper {
+  display: block;
+  position: relative;
+  border-radius: 16px;
+  overflow: hidden;
+  text-decoration: none;
+  /* Metallic gold gradient */
+  background: linear-gradient(135deg, #3a2a11 0%, #8d6b1f 45%, #d4af37 100%);
+  box-shadow:
+    0 8px 24px rgba(0, 0, 0, 0.18),
+    inset 0 1px 0 rgba(255, 255, 255, 0.25);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.wrapper:focus-visible {
+  outline: 3px solid #111;
+  outline-offset: 3px;
+}
+
+.wrapper:hover {
+  transform: translateY(-1px);
+  box-shadow:
+    0 12px 28px rgba(0, 0, 0, 0.22),
+    inset 0 1px 0 rgba(255, 255, 255, 0.25);
+}
+
+.inner {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr minmax(220px, 34%);
+  gap: 16px;
+  align-items: center;
+  padding: 26px clamp(16px, 4vw, 36px);
+  min-height: 140px;
+}
+
+.left {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  min-width: 0;
+}
+
+.text {
+  color: #ffffff;
+  font-weight: 800;
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
+  font-size: clamp(16px, 2.15vw, 34px);
+  line-height: 1.2;
+  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.25);
+}
+
+.text strong {
+  font-weight: 900;
+}
+
+.pdfIcon {
+  width: clamp(32px, 4vw, 44px);
+  height: clamp(32px, 4vw, 44px);
+  border-radius: 10px;
+  background:
+    radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.2) 60%),
+    #111;
+  position: relative;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.12), 0 2px 6px rgba(0, 0, 0, 0.25);
+}
+.pdfIcon::before {
+  content: "";
+  position: absolute;
+  inset: 6px;
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='64' height='64' viewBox='0 0 24 24'%3E%3Cpath fill='white' d='M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8zm0 0l6 6m-9.5 5.5H9v2H7v-6h2.5A1.5 1.5 0 0 1 11 11v0a1.5 1.5 0 0 1-1.5 1.5ZM12 11h3a2 2 0 0 1 0 4h-1v2h-2zm2 2a.5.5 0 0 0 0-1h-1v1zm4 0h1.5v-1H18v5h1.5v-2H21v-1h-1.5z'/%3E%3C/svg%3E") center / contain no-repeat;
+  background: #fff;
+  opacity: 0.9;
+}
+
+.preview {
+  position: relative;
+  height: clamp(110px, 16vw, 180px);
+  /* keep the image visually inside the bar */
+  filter: drop-shadow(0 6px 10px rgba(0, 0, 0, 0.25));
+}
+
+.previewImg {
+  object-fit: contain;
+  object-position: right center;
+}
+
+.bottomTrim {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 6px;
+  background: #111; /* thin black strip like the reference */
+}
+
+/* Mobile refinements */
+@media (max-width: 640px) {
+  .inner {
+    grid-template-columns: 1fr 42%;
+    padding: 18px 14px;
+    min-height: 110px;
+  }
+  .left {
+    gap: 12px;
+  }
+  .bottomTrim {
+    height: 4px;
+  }
+}

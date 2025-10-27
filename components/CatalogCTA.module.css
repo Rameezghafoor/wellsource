@@ -1,0 +1,184 @@
+
+.wrapper {
+  display: block;
+  position: relative;
+  border-radius: 16px;
+  /* allow the preview to pop OUT of the bar */
+  overflow: visible;
+  text-decoration: none;
+  background: linear-gradient(135deg, #3a2a11 0%, #8d6b1f 45%, #d4af37 100%);
+  box-shadow:
+    0 8px 24px rgba(0, 0, 0, 0.18),
+    inset 0 1px 0 rgba(255, 255, 255, 0.25);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+/* Mobile-specific styling - keeping original gold theme */
+@media (max-width: 640px) {
+  .wrapper {
+    border-radius: 12px;
+  }
+}
+
+.wrapper:focus-visible { outline: 3px solid #111; outline-offset: 3px; }
+.wrapper:hover { transform: translateY(-1px); box-shadow: 0 12px 28px rgba(0,0,0,.22), inset 0 1px 0 rgba(255,255,255,.25); }
+
+.inner {
+  z-index: 1;
+  z-index: 2;
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr; /* text flows as one block; preview is absolutely positioned */
+  gap: 12px;
+  align-items: center;
+  /* SHORTER bar */
+  padding: 14px clamp(14px, 3vw, 28px);
+  min-height: 82px;
+}
+
+.left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+}
+
+.text {
+  color: #ffffff;
+  font-weight: 800;
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
+  font-size: clamp(14px, 1.6vw, 26px); /* slightly smaller */
+  line-height: 1.1;
+  text-shadow: 0 1px 0 rgba(0,0,0,.25);
+}
+.text strong { font-weight: 900; }
+
+.textContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.textLine {
+  color: #ffffff;
+  font-weight: 800;
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
+  font-size: clamp(14px, 1.6vw, 26px);
+  line-height: 1.1;
+  text-shadow: 0 1px 0 rgba(0,0,0,.25);
+}
+
+.textLine strong { 
+  font-weight: 900; 
+}
+
+.pdfIcon {
+  width: clamp(26px, 3.2vw, 36px);
+  height: clamp(26px, 3.2vw, 36px);
+  border-radius: 10px;
+  background:
+    radial-gradient(circle at 30% 30%, rgba(255,255,255,.9), rgba(255,255,255,.2) 60%),
+    #111;
+  position: relative;
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,.12), 0 2px 6px rgba(0,0,0,.25);
+}
+.pdfIcon::before {
+  content: "";
+  position: absolute;
+  inset: 6px;
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='64' height='64' viewBox='0 0 24 24'%3E%3Cpath fill='white' d='M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8zm0 0l6 6m-9.5 5.5H9v2H7v-6h2.5A1.5 1.5 0 0 1 11 11v0a1.5 1.5 0 0 1-1.5 1.5ZM12 11h3a2 2 0 0 1 0 4h-1v2h-2zm2 2a.5.5 0 0 0 0-1h-1v1zm4 0h1.5v-1H18v5h1.5v-2H21v-1h-1.5z'/%3E%3C/svg%3E") center / contain no-repeat;
+  background: #fff;
+  opacity: .9;
+}
+
+/* === PREVIEW OUTSIDE THE BAR (top-right) === */
+.preview {
+  z-index: 2;
+  z-index: 3;
+  position: absolute;
+  right: clamp(10px, 2.4vw, 26px);
+  top: 0; /* anchor to top edge */
+  transform: translateY(-42%); /* pop UP above the bar */
+  width: clamp(200px, 30vw, 360px);
+  height: clamp(120px, 20vw, 210px);
+  filter: drop-shadow(0 10px 14px rgba(0,0,0,.28));
+  pointer-events: none; /* clicking anywhere still opens the link */
+}
+
+.previewImg {
+  object-fit: contain;
+  object-position: right center;
+  border-radius: 6px;
+}
+
+/* Thin black strip like the reference (TOP edge) */
+.bottomTrim {
+  z-index: 0;
+  z-index: 1;
+  position: absolute;
+  left: 0; right: 0; top: 0;
+  height: 6px;
+  background: #111;
+}
+
+/* Mobile refinements */
+
+@media (max-width: 640px) {
+  .inner {
+    padding: 16px 20px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    min-height: 80px;
+  }
+  
+  .left {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex: 1;
+    min-width: 0;
+  }
+  
+  .text {
+    font-size: clamp(14px, 3.5vw, 18px);
+    font-weight: 800;
+    line-height: 1.1;
+    letter-spacing: 0.5px;
+  }
+  
+  .pdfIcon {
+    width: 24px;
+    height: 24px;
+    flex-shrink: 0;
+  }
+  
+  .preview {
+    position: relative;
+    right: auto;
+    top: auto;
+    transform: none;
+    width: 80px;
+    height: 60px;
+    z-index: 2;
+    border-radius: 6px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    flex-shrink: 0;
+  }
+  
+  .previewImg {
+    object-fit: cover;
+    object-position: center;
+    border-radius: 4px;
+  }
+  
+  .bottomTrim { 
+    height: 4px; 
+  }
+}
+
