@@ -29,51 +29,36 @@ export default function ContactSection() {
     setIsSubmitting(true);
     
     try {
-      // Create a hidden form and submit it directly to Formspree
-      const form = document.createElement('form');
-      form.action = 'https://formspree.io/f/xpwoqwwj';
-      form.method = 'POST';
-      form.style.display = 'none';
-      // Remove target='_blank' to prevent popup
-      
-      // Add email field
-      const emailInput = document.createElement('input');
-      emailInput.type = 'email';
-      emailInput.name = 'email';
-      emailInput.value = formData.email;
-      form.appendChild(emailInput);
-      
-      // Add message field with all the data
-      const messageInput = document.createElement('textarea');
-      messageInput.name = 'message';
-      messageInput.value = `Name: ${formData.firstName} ${formData.lastName}\nPhone: ${formData.phone}\n\nMessage: ${formData.message}`;
-      form.appendChild(messageInput);
-      
-      // Add to page and submit
-      document.body.appendChild(form);
-      form.submit();
-      
-      // Show success message
-      setShowSuccess(true);
-      setFormData({
-        firstName: "",
-        lastName: "",
-        email: "",
-        phone: "",
-        message: "",
+      // Use fetch API to submit to Formspree without redirect
+      const response = await fetch('https://formspree.io/f/xpwoqwwj', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          email: formData.email,
+          message: `Name: ${formData.firstName} ${formData.lastName}\nPhone: ${formData.phone}\n\nMessage: ${formData.message}`,
+        }),
       });
       
-      // Hide success message after 5 seconds
-      setTimeout(() => {
-        setShowSuccess(false);
-      }, 5000);
-      
-      // Remove the form after a short delay
-      setTimeout(() => {
-        if (document.body.contains(form)) {
-          document.body.removeChild(form);
-        }
-      }, 1000);
+      if (response.ok) {
+        // Show success message
+        setShowSuccess(true);
+        setFormData({
+          firstName: "",
+          lastName: "",
+          email: "",
+          phone: "",
+          message: "",
+        });
+        
+        // Hide success message after 5 seconds
+        setTimeout(() => {
+          setShowSuccess(false);
+        }, 5000);
+      } else {
+        throw new Error('Form submission failed');
+      }
       
     } catch (error) {
       console.error('Form submission error:', error);
