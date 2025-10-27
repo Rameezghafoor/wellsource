@@ -2,7 +2,6 @@
 
 import React, { useState } from "react";
 import styles from "./ContactSection.module.css";
-import { FORMSPREE_CONFIG, getFormspreeEndpoint } from "../../lib/formspree";
 
 export default function ContactSection() {
   const [formData, setFormData] = useState({
@@ -159,7 +158,7 @@ export default function ContactSection() {
             <div className={styles.successMessage}>
               <div className={styles.successIcon}>✓</div>
               <h3>Thank you for your message!</h3>
-              <p>We'll get back to you within 24 hours.</p>
+              <p>We&apos;ll get back to you within 24 hours.</p>
             </div>
           )}
 

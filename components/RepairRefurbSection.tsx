@@ -5,7 +5,6 @@ import React, { useState } from "react";
 import Image from "next/image";
 import ContactLink from "./ContactLink";
 import s from "./RepairRefurbSection.module.css";
-import { FORMSPREE_CONFIG, getFormspreeEndpoint } from "../lib/formspree";
 
 export default function RepairRefurbSection() {
   const [formData, setFormData] = useState({
@@ -127,7 +126,7 @@ export default function RepairRefurbSection() {
               <div className={s.successMessage}>
                 <div className={s.successIcon}>✓</div>
                 <h3>Thank you for your inquiry!</h3>
-                <p>We'll contact you within 24 hours to discuss your repair needs.</p>
+                <p>We&apos;ll contact you within 24 hours to discuss your repair needs.</p>
               </div>
             )}
           </div>

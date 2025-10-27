@@ -2,7 +2,6 @@
 
 import React, { useState } from "react";
 import styles from "./RangesForm.module.css";
-import { FORMSPREE_CONFIG, getFormspreeEndpoint } from "../../lib/formspree";
 
 export default function RangesForm() {
   const [formData, setFormData] = useState({
@@ -175,7 +174,7 @@ export default function RangesForm() {
             <div className={styles.successMessage}>
               <div className={styles.successIcon}>✓</div>
               <h3>Thank you for your request!</h3>
-              <p>We'll send you detailed information within 24 hours.</p>
+              <p>We&apos;ll send you detailed information within 24 hours.</p>
             </div>
           )}
         </div>
