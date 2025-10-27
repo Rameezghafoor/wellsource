@@ -28,13 +28,18 @@
 
 /* ----- HEADLINE / LEAD ----- */
 .title {
-  color: #0B1630;
+  font-family: "Bebas Neue", sans-serif;
+  font-size: clamp(28px, 4vw, 36px);
+  font-weight: 700;
+  color: var(--ink);
   text-transform: uppercase;
-  font-weight: 900;
-  line-height: 1.08;
-  letter-spacing: .6px;
-  margin: 0 0 1rem 0;
-  font-size: clamp(26px, 2.9vw, 42px);
+  letter-spacing: 1px;
+  text-align: left;
+  margin: 0 0 40px 0;
+  line-height: 1.1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 .lead {
   color: rgba(27,33,56,.86);
@@ -214,6 +219,38 @@
 
   /* Form spacing relaxed after cards */
   .formShell { margin-top: 1.1rem; }
+  
+  /* Mobile title styling - ensure one line */
+  .title {
+    font-size: clamp(24px, 6vw, 32px);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    letter-spacing: 0.5px;
+    margin: 0 0 1rem 0;
+  }
+}
+
+/* Very narrow mobile screens - ensure title fits */
+@media (max-width: 375px) {
+  .title {
+    font-size: clamp(20px, 7vw, 28px);
+    letter-spacing: 0.3px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}
+
+/* Ultra narrow screens - iPhone SE, etc. */
+@media (max-width: 320px) {
+  .title {
+    font-size: clamp(18px, 8vw, 24px);
+    letter-spacing: 0.2px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
 }
 
 /* Success Message Styles - Gold Theme */
