@@ -1,4 +1,4 @@
-// app/about/page.js
+// app/about/page.tsx
 import React from "react";
 import AboutHero from "../../components/about/Hero";
 import AboutSection from "../../components/about/AboutSection";

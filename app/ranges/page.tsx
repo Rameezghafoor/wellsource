@@ -1,4 +1,4 @@
-// app/ranges/page.js
+// app/ranges/page.tsx
 import React from "react";
 import RangesHero from "../../components/ranges/Hero";
 import SurgicalInstruments from "../../components/ranges/SurgicalInstruments";

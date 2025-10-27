@@ -1,4 +1,4 @@
-// app/contact/page.js
+// app/contact/page.tsx
 import React from "react";
 import ContactHero from "../../components/contact/Hero";
 import ContactSection from "../../components/contact/ContactSection";
