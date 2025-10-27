@@ -21,50 +21,66 @@ export default function ContactSection() {
     }));
   };
 
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [showSuccess, setShowSuccess] = useState(false);
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log('Form submitted with data:', formData);
+    setIsSubmitting(true);
     
-    // Create a hidden form and submit it directly to Formspree
-    const form = document.createElement('form');
-    form.action = 'https://formspree.io/f/xpwoqwwj';
-    form.method = 'POST';
-    form.style.display = 'none';
-    form.target = '_blank'; // Open in new tab to avoid CORS issues
-    
-    // Add email field
-    const emailInput = document.createElement('input');
-    emailInput.type = 'email';
-    emailInput.name = 'email';
-    emailInput.value = formData.email;
-    form.appendChild(emailInput);
-    
-    // Add message field with all the data
-    const messageInput = document.createElement('textarea');
-    messageInput.name = 'message';
-    messageInput.value = `Name: ${formData.firstName} ${formData.lastName}\nPhone: ${formData.phone}\n\nMessage: ${formData.message}`;
-    form.appendChild(messageInput);
-    
-    // Add to page and submit
-    document.body.appendChild(form);
-    form.submit();
-    
-    // Show success message
-    alert('Thank you! Your message has been sent successfully.');
-    setFormData({
-      firstName: "",
-      lastName: "",
-      email: "",
-      phone: "",
-      message: "",
-    });
-    
-    // Remove the form after a short delay
-    setTimeout(() => {
-      if (document.body.contains(form)) {
-        document.body.removeChild(form);
-      }
-    }, 1000);
+    try {
+      // Create a hidden form and submit it directly to Formspree
+      const form = document.createElement('form');
+      form.action = 'https://formspree.io/f/xpwoqwwj';
+      form.method = 'POST';
+      form.style.display = 'none';
+      // Remove target='_blank' to prevent popup
+      
+      // Add email field
+      const emailInput = document.createElement('input');
+      emailInput.type = 'email';
+      emailInput.name = 'email';
+      emailInput.value = formData.email;
+      form.appendChild(emailInput);
+      
+      // Add message field with all the data
+      const messageInput = document.createElement('textarea');
+      messageInput.name = 'message';
+      messageInput.value = `Name: ${formData.firstName} ${formData.lastName}\nPhone: ${formData.phone}\n\nMessage: ${formData.message}`;
+      form.appendChild(messageInput);
+      
+      // Add to page and submit
+      document.body.appendChild(form);
+      form.submit();
+      
+      // Show success message
+      setShowSuccess(true);
+      setFormData({
+        firstName: "",
+        lastName: "",
+        email: "",
+        phone: "",
+        message: "",
+      });
+      
+      // Hide success message after 5 seconds
+      setTimeout(() => {
+        setShowSuccess(false);
+      }, 5000);
+      
+      // Remove the form after a short delay
+      setTimeout(() => {
+        if (document.body.contains(form)) {
+          document.body.removeChild(form);
+        }
+      }, 1000);
+      
+    } catch (error) {
+      console.error('Form submission error:', error);
+      alert('Sorry, there was an error sending your message. Please try again.');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -149,10 +165,18 @@ export default function ContactSection() {
               />
             </div>
 
-            <button type="submit" className={styles.submitButton}>
-              Submit
+            <button type="submit" className={styles.submitButton} disabled={isSubmitting}>
+              {isSubmitting ? 'Sending...' : 'Submit'}
             </button>
           </form>
+          
+          {showSuccess && (
+            <div className={styles.successMessage}>
+              <div className={styles.successIcon}>✓</div>
+              <h3>Thank you for your message!</h3>
+              <p>We'll get back to you within 24 hours.</p>
+            </div>
+          )}
 
         </div>
 

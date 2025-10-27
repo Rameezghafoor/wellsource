@@ -22,51 +22,67 @@ export default function RangesForm() {
     }));
   };
 
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [showSuccess, setShowSuccess] = useState(false);
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log('Ranges form submitted with data:', formData);
+    setIsSubmitting(true);
     
-    // Create a hidden form and submit it directly to Formspree
-    const form = document.createElement('form');
-    form.action = 'https://formspree.io/f/xpwoqwwj';
-    form.method = 'POST';
-    form.style.display = 'none';
-    form.target = '_blank'; // Open in new tab to avoid CORS issues
-    
-    // Add email field
-    const emailInput = document.createElement('input');
-    emailInput.type = 'email';
-    emailInput.name = 'email';
-    emailInput.value = formData.email;
-    form.appendChild(emailInput);
-    
-    // Add message field with all the data
-    const messageInput = document.createElement('textarea');
-    messageInput.name = 'message';
-    messageInput.value = `Name: ${formData.name}\nCompany: ${formData.company}\nPhone: ${formData.phone}\nInterest: ${formData.interest}\n\nMessage: ${formData.message}`;
-    form.appendChild(messageInput);
-    
-    // Add to page and submit
-    document.body.appendChild(form);
-    form.submit();
-    
-    // Show success message
-    alert('Thank you! Your information request has been sent successfully.');
-    setFormData({
-      name: "",
-      email: "",
-      company: "",
-      phone: "",
-      message: "",
-      interest: "",
-    });
-    
-    // Remove the form after a short delay
-    setTimeout(() => {
-      if (document.body.contains(form)) {
-        document.body.removeChild(form);
-      }
-    }, 1000);
+    try {
+      // Create a hidden form and submit it directly to Formspree
+      const form = document.createElement('form');
+      form.action = 'https://formspree.io/f/xpwoqwwj';
+      form.method = 'POST';
+      form.style.display = 'none';
+      // Remove target='_blank' to prevent popup
+      
+      // Add email field
+      const emailInput = document.createElement('input');
+      emailInput.type = 'email';
+      emailInput.name = 'email';
+      emailInput.value = formData.email;
+      form.appendChild(emailInput);
+      
+      // Add message field with all the data
+      const messageInput = document.createElement('textarea');
+      messageInput.name = 'message';
+      messageInput.value = `Name: ${formData.name}\nCompany: ${formData.company}\nPhone: ${formData.phone}\nInterest: ${formData.interest}\n\nMessage: ${formData.message}`;
+      form.appendChild(messageInput);
+      
+      // Add to page and submit
+      document.body.appendChild(form);
+      form.submit();
+      
+      // Show success message
+      setShowSuccess(true);
+      setFormData({
+        name: "",
+        email: "",
+        company: "",
+        phone: "",
+        message: "",
+        interest: "",
+      });
+      
+      // Hide success message after 5 seconds
+      setTimeout(() => {
+        setShowSuccess(false);
+      }, 5000);
+      
+      // Remove the form after a short delay
+      setTimeout(() => {
+        if (document.body.contains(form)) {
+          document.body.removeChild(form);
+        }
+      }, 1000);
+      
+    } catch (error) {
+      console.error('Form submission error:', error);
+      alert('Sorry, there was an error sending your request. Please try again.');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -165,10 +181,18 @@ export default function RangesForm() {
               />
             </div>
 
-            <button type="submit" className={styles.submitButton}>
-              Request Information
+            <button type="submit" className={styles.submitButton} disabled={isSubmitting}>
+              {isSubmitting ? 'Sending...' : 'Request Information'}
             </button>
           </form>
+          
+          {showSuccess && (
+            <div className={styles.successMessage}>
+              <div className={styles.successIcon}>✓</div>
+              <h3>Thank you for your request!</h3>
+              <p>We'll send you detailed information within 24 hours.</p>
+            </div>
+          )}
         </div>
       </div>
     </section>
