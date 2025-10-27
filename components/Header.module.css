@@ -224,45 +224,146 @@
 }
 .ctaDark:hover{ box-shadow: 0 0 0 4px rgba(255,255,255,.08), 0 10px 24px rgba(0,0,0,.55); }
 
-/* === Mobile adjustments: logo starts from very beginning === */
+/* === Mobile adjustments: fix header layout and menu === */
 @media (max-width: 767px){
   .header {
-    padding: 0 16px 0 0; /* Remove left padding, keep right padding for hamburger */
+    padding: 0 16px 0 16px; /* Equal padding on both sides */
+    height: 60px; /* Slightly smaller header on mobile */
   }
   
   .logoWrap {
-    margin-left: 0; /* Ensure logo starts from the very left */
-    gap: 12px; /* Reduce gap between logo and text on mobile */
-    padding: 8px 12px 8px 0; /* Add padding for better touch targets and spacing */
-    background: rgba(255, 255, 255, 0.1); /* Subtle background for better contrast */
-    border-radius: 12px; /* Rounded corners for modern look */
-    backdrop-filter: blur(10px); /* Subtle blur effect */
+    margin-left: 0;
+    gap: 8px; /* Smaller gap for mobile */
+    padding: 4px 8px; /* Reduced padding */
+    background: transparent; /* Remove background for cleaner look */
+    border-radius: 8px;
+    backdrop-filter: none; /* Remove blur for better performance */
+    flex: 1; /* Allow logo to take available space */
+    min-width: 0; /* Allow text to shrink */
   }
   
   .logoImg {
-    width: 80px; /* Slightly smaller logo on mobile */
-    height: 80px;
+    width: 50px; /* Much smaller logo on mobile */
+    height: 50px;
+    flex-shrink: 0; /* Prevent logo from shrinking */
+  }
+  
+  .brandText {
+    min-width: 0; /* Allow text to shrink */
+    flex: 1;
   }
   
   .brandName {
-    font-size: 26px; /* Slightly larger for better readability */
-    letter-spacing: 2.5px; /* Increased letter spacing for clarity */
-    font-weight: 900; /* Ensure maximum font weight */
+    font-size: 18px; /* Smaller for mobile */
+    letter-spacing: 1px;
+    font-weight: 900;
     text-shadow: 
       0 1px 0 rgba(255,255,255,0.9),
-      0 2px 4px rgba(0,0,0,0.4),
-      0 4px 8px rgba(0,0,0,0.3); /* Stronger text shadow for readability */
+      0 2px 4px rgba(0,0,0,0.4);
+    line-height: 1;
   }
   
   .brandSub {
-    font-size: 16px; /* Increased size for better readability */
-    letter-spacing: 2px; /* Increased letter spacing for clarity */
-    font-weight: 800; /* Increased font weight for better visibility */
-    color: var(--ws-gold-4); /* Darker gold for better contrast */
+    font-size: 12px; /* Smaller for mobile */
+    letter-spacing: 1px;
+    font-weight: 800;
+    color: var(--ws-gold-4);
     text-shadow: 
       0 1px 0 rgba(255,255,255,0.9),
-      0 2px 4px rgba(0,0,0,0.4),
-      0 4px 8px rgba(0,0,0,0.3); /* Stronger text shadow for readability */
+      0 2px 4px rgba(0,0,0,0.4);
+    line-height: 1;
+  }
+  
+  .menuIcon {
+    margin-right: 0; /* Remove right margin */
+    height: 40px;
+    width: 40px;
+    flex-shrink: 0; /* Prevent menu icon from shrinking */
+  }
+  
+  /* Fix menu overlay for mobile */
+  .overlay {
+    background: rgba(0,0,0,0.8); /* Darker overlay for better contrast */
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+  }
+  
+  .drawer {
+    width: 100vw; /* Full width on mobile */
+    max-width: 100vw;
+    height: 100vh; /* Use vh instead of dvh for better Safari support */
+    height: 100dvh; /* Fallback for modern browsers */
+  }
+  
+  .drawerHeader {
+    height: 60px; /* Match header height */
+    padding: 0 20px;
+  }
+  
+  .navItem {
+    font-size: 18px; /* Smaller text for mobile */
+    padding: 12px 16px;
+    margin: 4px 0;
+  }
+  
+  .ctaWrap {
+    padding: 0 20px 20px;
+  }
+  
+  .cta {
+    height: 48px; /* Smaller buttons on mobile */
+    font-size: 14px;
+  }
+}
+
+/* === Very narrow mobile screens (iPhone SE, etc.) === */
+@media (max-width: 375px) {
+  .header {
+    padding: 0 12px 0 12px;
+    height: 56px;
+  }
+  
+  .logoImg {
+    width: 40px;
+    height: 40px;
+  }
+  
+  .brandName {
+    font-size: 16px;
+    letter-spacing: 0.5px;
+  }
+  
+  .brandSub {
+    font-size: 11px;
+    letter-spacing: 0.5px;
+  }
+  
+  .menuIcon {
+    height: 36px;
+    width: 36px;
+  }
+  
+  .bar {
+    width: 16px;
+    height: 2px;
+  }
+}
+
+/* === Safari iOS specific fixes === */
+@supports (-webkit-touch-callout: none) {
+  .drawer {
+    height: 100vh; /* Force vh for Safari iOS */
+    height: -webkit-fill-available; /* Fallback for older Safari */
+  }
+  
+  .overlay {
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+  }
+  
+  .header {
+    -webkit-backdrop-filter: blur(20px);
+    backdrop-filter: blur(20px);
   }
 }
 

@@ -19,16 +19,34 @@ export default function Header() {
 
   // Lock body scroll + close on ESC; focus the close button when opened
   useEffect(() => {
-    const prevOverflow = document.body.style.overflow;
-    document.body.style.overflow = menuOpen ? "hidden" : prevOverflow;
+    if (menuOpen) {
+      // Prevent body scroll on mobile
+      document.body.style.overflow = "hidden";
+      document.body.style.position = "fixed";
+      document.body.style.width = "100%";
+      document.body.style.top = "0";
+    } else {
+      // Restore body scroll
+      document.body.style.overflow = "";
+      document.body.style.position = "";
+      document.body.style.width = "";
+      document.body.style.top = "";
+    }
 
     const onKey = (e: KeyboardEvent) => e.key === "Escape" && setMenuOpen(false);
     window.addEventListener("keydown", onKey);
 
-    if (menuOpen) closeBtnRef.current?.focus();
+    if (menuOpen) {
+      // Small delay to ensure DOM is updated
+      setTimeout(() => closeBtnRef.current?.focus(), 100);
+    }
 
     return () => {
-      document.body.style.overflow = prevOverflow;
+      // Cleanup on unmount
+      document.body.style.overflow = "";
+      document.body.style.position = "";
+      document.body.style.width = "";
+      document.body.style.top = "";
       window.removeEventListener("keydown", onKey);
     };
   }, [menuOpen]);
