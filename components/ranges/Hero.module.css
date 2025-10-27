@@ -136,19 +136,63 @@
   .pills a:nth-child(2){ order: 1; }
 
   .pill{
-    width: 85%;           /* narrower, more professional look */
-    max-width: 520px;
+    width: 90%;
+    max-width: 400px;
     justify-content: center;
     border-radius: 999px;
-    padding: 14px 18px;
-    font-size: 16px;
+    padding: 12px 16px;
+    font-size: 14px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    min-width: 0;
   }
-  .icon{ width: 18px; height: 18px; }
+  .icon{ 
+    width: 16px; 
+    height: 16px; 
+    flex-shrink: 0;
+  }
+  
+  /* Fix text overflow on very narrow screens */
+  .pill span {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    min-width: 0;
+  }
 }
 
 /* Keep sentence wrapping again on smaller desktops */
 @media (max-width: 1200px){
   .infoText{ white-space: normal; }
+}
+
+/* Very narrow mobile screens - fix text overflow */
+@media (max-width: 375px) {
+  .pill {
+    width: 95%;
+    padding: 10px 12px;
+    font-size: 12px;
+  }
+  
+  .icon {
+    width: 14px;
+    height: 14px;
+  }
+}
+
+/* Ultra narrow screens - iPhone SE, etc. */
+@media (max-width: 320px) {
+  .pill {
+    width: 98%;
+    padding: 8px 10px;
+    font-size: 11px;
+  }
+  
+  .icon {
+    width: 12px;
+    height: 12px;
+  }
 }
 
 
