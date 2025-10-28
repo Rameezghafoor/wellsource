@@ -5,6 +5,11 @@ import Image from "next/image";
 import Link from "next/link";
 import styles from "./Header.module.css";
 
+// Extend CSSStyleDeclaration to include webkit properties
+interface ExtendedCSSStyleDeclaration extends CSSStyleDeclaration {
+  webkitOverflowScrolling?: string;
+}
+
 // Distributors REMOVED per request
 const NAV = [
   { href: "/", label: "Home" },
@@ -22,7 +27,7 @@ export default function Header() {
   useEffect(() => {
     const userAgent = navigator.userAgent;
     const isSafariBrowser = /^((?!chrome|android).)*safari/i.test(userAgent) || 
-                           /iPad|iPhone|iPod/.test(userAgent) && !(window as any).MSStream ||
+                           /iPad|iPhone|iPod/.test(userAgent) && !(window as Window & { MSStream?: unknown }).MSStream ||
                            (navigator.vendor && navigator.vendor.indexOf('Apple') > -1);
     setIsSafari(!!isSafariBrowser);
   }, []);
@@ -39,7 +44,7 @@ export default function Header() {
       // Safari-specific fixes
       if (isSafari) {
         document.body.style.height = "100%";
-        (document.body.style as any).webkitOverflowScrolling = "touch";
+        (document.body.style as ExtendedCSSStyleDeclaration).webkitOverflowScrolling = "touch";
       }
     } else {
       // Restore body scroll
@@ -48,7 +53,7 @@ export default function Header() {
       document.body.style.width = "";
       document.body.style.top = "";
       document.body.style.height = "";
-      (document.body.style as any).webkitOverflowScrolling = "";
+      (document.body.style as ExtendedCSSStyleDeclaration).webkitOverflowScrolling = "";
     }
 
     const onKey = (e: KeyboardEvent) => e.key === "Escape" && setMenuOpen(false);
@@ -66,7 +71,7 @@ export default function Header() {
       document.body.style.width = "";
       document.body.style.top = "";
       document.body.style.height = "";
-      (document.body.style as any).webkitOverflowScrolling = "";
+      (document.body.style as ExtendedCSSStyleDeclaration).webkitOverflowScrolling = "";
       window.removeEventListener("keydown", onKey);
     };
   }, [menuOpen, isSafari]);
