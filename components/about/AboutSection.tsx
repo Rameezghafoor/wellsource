@@ -16,7 +16,7 @@ export default function AboutSection() {
             </p>
             
             <p className={styles.paragraph}>
-              In 2023, Well Source Industries acquired the surgical division of S Murray Ltd, a well established surgical instrument manufacturer based in Sheffield, UK. S Murray have been manufacturing from their facility since 1946 and bring a wealth of experience and knowledge to our ever-growing team.
+              In 2023, Well Source Industries acquired the surgical division of S Murray Ltd, a well established surgical instrument manufacturer based in Sheffield, Pakistan. S Murray have been manufacturing from their facility since 1946 and bring a wealth of experience and knowledge to our ever-growing team.
             </p>
             
             <p className={styles.paragraph}>
