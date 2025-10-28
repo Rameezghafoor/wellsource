@@ -15,7 +15,17 @@ const NAV = [
 
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [isSafari, setIsSafari] = useState(false);
   const closeBtnRef = useRef<HTMLButtonElement | null>(null);
+
+  // Detect Safari browser
+  useEffect(() => {
+    const userAgent = navigator.userAgent;
+    const isSafariBrowser = /^((?!chrome|android).)*safari/i.test(userAgent) || 
+                           /iPad|iPhone|iPod/.test(userAgent) && !(window as any).MSStream ||
+                           (navigator.vendor && navigator.vendor.indexOf('Apple') > -1);
+    setIsSafari(!!isSafariBrowser);
+  }, []);
 
   // Lock body scroll + close on ESC; focus the close button when opened
   useEffect(() => {
@@ -25,12 +35,20 @@ export default function Header() {
       document.body.style.position = "fixed";
       document.body.style.width = "100%";
       document.body.style.top = "0";
+      
+      // Safari-specific fixes
+      if (isSafari) {
+        document.body.style.height = "100%";
+        (document.body.style as any).webkitOverflowScrolling = "touch";
+      }
     } else {
       // Restore body scroll
       document.body.style.overflow = "";
       document.body.style.position = "";
       document.body.style.width = "";
       document.body.style.top = "";
+      document.body.style.height = "";
+      (document.body.style as any).webkitOverflowScrolling = "";
     }
 
     const onKey = (e: KeyboardEvent) => e.key === "Escape" && setMenuOpen(false);
@@ -47,9 +65,11 @@ export default function Header() {
       document.body.style.position = "";
       document.body.style.width = "";
       document.body.style.top = "";
+      document.body.style.height = "";
+      (document.body.style as any).webkitOverflowScrolling = "";
       window.removeEventListener("keydown", onKey);
     };
-  }, [menuOpen]);
+  }, [menuOpen, isSafari]);
 
   return (
     <header className={styles.header}>
@@ -95,7 +115,7 @@ export default function Header() {
         id="site-drawer"
         role="dialog"
         aria-modal="true"
-        className={`${styles.drawer} ${menuOpen ? styles.open : ""}`}
+        className={`${styles.drawer} ${menuOpen ? styles.open : ""} ${isSafari ? styles.safariDrawer : ""}`}
       >
         <div className={styles.drawerHeader}>
           <span className={styles.brandMini}>MENU</span>

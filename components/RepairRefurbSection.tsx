@@ -76,7 +76,7 @@ export default function RepairRefurbSection() {
           <div className={s.leftBlock}>
             <p className={s.lead}>
               We specialise in repair and refurbishment of surgical instruments at our
-              10,000 sq&nbsp;ft facility in Sheffield, UK.
+              10,000 sq&nbsp;ft facility in Pakistan.
             </p>
 
             <form onSubmit={handleSubmit} className={s.formShell}>

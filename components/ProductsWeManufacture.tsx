@@ -30,7 +30,7 @@ export default function ProductsWeManufacture() {
               </div>
               <div className={styles.cardContent}>
                 <p className={styles.description}>
-                  Manufactured in our UK based factory, our surgical instruments are made from high grade stainless steel in accordance to ISO 13485, suitable for the medical, healthcare, and laboratory sectors.
+                  Manufactured in our Pakistan based factory, our surgical instruments are made from high grade stainless steel in accordance to ISO 13485, suitable for the medical, healthcare, and laboratory sectors.
                 </p>
               </div>
             </div>

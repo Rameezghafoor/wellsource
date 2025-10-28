@@ -27,6 +27,8 @@
   line-height:1.65;
   max-width:40ch;
   text-align: left;
+  text-align: justify;
+  text-justify: inter-word;
 }
 
 /* CTAs */
@@ -107,7 +109,11 @@
 /* -------- Mobile tuning (≤ 767px) -------- */
 @media (max-width: 767px){
   .headline{ font-size:clamp(1.55rem, 5.6vw + .25rem, 2.55rem); }
-  .subcopy{ max-width:34ch; }
+  .subcopy{ 
+    max-width:34ch; 
+    text-align: left;
+    text-justify: none;
+  }
   .ctaLabel{ white-space:normal; }
 
   /* Mobile buttons layout - side by side like image */

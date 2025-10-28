@@ -19,10 +19,12 @@ export default function Hero() {
             </h1>
 
             <p className={s.subcopy}>
-              Well Source designs and manufactures reliable surgical instruments
-              and accessories for theatres, clinics and laboratories. Our family-run
-              team focuses on precision, durability and responsive support — so your
-              staff can deliver outstanding care, every day.
+              At Well Source, we craft surgical instruments and accessories that 
+              healthcare professionals trust in theatres, clinics, and laboratories 
+              worldwide. As a family business, we understand what matters most: 
+              precision you can count on, tools that last, and support when you need it. 
+              Because when your team has the right equipment, they can focus on what 
+              they do best caring for patients.
             </p>
 
             <div className={s.ctaRow}>
